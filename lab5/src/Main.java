@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("This program is used to organize meetings in a calendar");
-        Calendar calendar = new Calendar();
+        Calendar calendar = new Calendar(12);
         Scanner input = new Scanner(System.in);
         boolean isRunning = true;
         while(isRunning) {
@@ -15,6 +15,7 @@ public class Main {
                 case 3 -> getAllMeetingsInADay(calendar, input);
                 case 4 -> getAllMeetingsInADayWithPriority(calendar, input);
                 case 5 -> isRunning = false;
+                default -> System.out.println("Invalid option");
             }
         }
     }
@@ -56,23 +57,27 @@ public class Main {
         System.out.println("Start time: " + meeting.getStartTime());
         System.out.println("End time: " + meeting.getEndTime() + "\n");
     }
+    public static void invalidTimeInfo() {
+        String invalidTimeInfo = "Invalid time, meeting not added";
+        System.out.println(invalidTimeInfo);
+    }
     public static void createMeeting(Calendar inputCalendar, Scanner scanner) {
-        System.out.println("Provide day of the meeting, description, start hour and start minute of the meeting, end hour and minute and priority: ");
         System.out.print("Provide day: ");
-        int day = scanner.nextInt();
+        int day = scanner.nextInt(); scanner.nextLine();
         System.out.print("Provide description: ");
-        String description = scanner.next();
+        String description = scanner.nextLine();
         System.out.print("Provide start hour (Earliest time is " + Meeting.EARLIEST_TIME + "): ");
         int startHour = scanner.nextInt();
+        if (startHour < Meeting.EARLIEST_TIME.getHour() || startHour > 23) { invalidTimeInfo(); return; }
         System.out.print("Provide start minute: ");
         int startMinute = scanner.nextInt();
+        if (startMinute < 0 || startMinute > 59) { invalidTimeInfo(); return; }
         System.out.print("Provide end hour: ");
         int endHour = scanner.nextInt();
-        if (startHour > endHour) { System.out.println("Invalid time, meeting not added"); return; }
+        if (endHour < 0 || endHour > 23 || startHour > endHour) { invalidTimeInfo(); return; }
         System.out.print("Provide end minute: ");
-        int endMinute = scanner.nextInt();
-        if (startHour == endHour && startMinute > endMinute) { System.out.println("Invalid time, meeting not added"); return; }
+        int endMinute = scanner.nextInt(); scanner.nextLine();
+        if (endMinute < 0 || endMinute > 59 || startHour == endHour && startMinute >= endMinute) { invalidTimeInfo(); return; }
         System.out.print("Provide priority (Low | Medium | High): ");
-        String priority = scanner.next();
-        inputCalendar.addMeeting(day, new Meeting(description, LocalTime.of(startHour, startMinute), LocalTime.of(endHour, endMinute), priority)); }
-    }
+        String priority = scanner.nextLine();
+        inputCalendar.addMeeting(day, new Meeting(description, LocalTime.of(startHour, startMinute), LocalTime.of(endHour, endMinute), priority)); }}

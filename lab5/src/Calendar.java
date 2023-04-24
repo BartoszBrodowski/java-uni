@@ -1,12 +1,17 @@
-import java.util.*;
+import java.util.ArrayList;
 
 public class Calendar {
-    private final ArrayList<Meeting>[] meetingsList = new ArrayList[7];
+    private final ArrayList<Meeting>[] meetingsList;
 
-    public Calendar() {
-        for (int i = 0; i < meetingsList.length; i++) {
+    public Calendar(int amountOfDays) {
+        meetingsList = new ArrayList[amountOfDays];
+        for (int i = 0; i < amountOfDays; i++) {
             meetingsList[i] = new ArrayList<Meeting>();
         }
+    }
+
+    public Calendar() {
+      this(7);
     }
 
     public void addMeeting(int day, Meeting meeting) {

@@ -1,18 +1,14 @@
 import java.time.LocalTime;
 
 public class Meeting {
-    static LocalTime EARLIEST_TIME = LocalTime.of(8, 0);
-    private final String description;
-    private final LocalTime startTime;
-    private final LocalTime endTime;
-    private final String priority;
+    static final LocalTime EARLIEST_TIME = LocalTime.of(8, 0);
+    private String description;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private String priority;
     public Meeting(String newDescription, LocalTime newStartTime, LocalTime newEndTime, String newPriority) {
         description = newDescription;
-        if (newStartTime.isBefore(EARLIEST_TIME)) {
-            startTime = EARLIEST_TIME;
-        } else {
-            startTime = newStartTime;
-        }
+        startTime = newStartTime;
         endTime = newEndTime;
         priority = newPriority;
     }
