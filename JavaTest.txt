@@ -1,0 +1,35 @@
+Test środa Java
+
+
+Zakres dostępności zmiennych
+
+Klasa String
+
+Podstawowe opercje na String (Wykorzystanie metod, które są zastosowane)
+
+2 klasy:
+LocalDate
+LocalTime
+
+Tworzenie obiektów tych klas oraz działania na nich
+
+Poczytać o 4 modyfikatorach dostępu do elementów klasy: 
+	public
+	protected
+	**bez keyworda** domyślny(package private)
+	private
+
+Ułożyć hierarchi od najbardziej liberalnego do najbardziej restrykcyjnego.
+
+Używanie konsturktorów (np. this() w klasie) 
+
+Przeciążanie metod:
+
+- Deklaracja metod (które metody są przeciążone w stosunku do siebie)
+- Wywołanie odpowiedniej metody przy użyciu metody (podaj wartość, jest kilka przeciążonych metod i mam stwierdzić która ma się wykonać)
+
+To co było do tej pory, bo też się pojawi.
+
+Importy statyczne
+
+Wywoływanie metod oraz korzystanie ze zmiennych statyczych

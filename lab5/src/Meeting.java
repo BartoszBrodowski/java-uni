@@ -1,27 +1,18 @@
 import java.time.LocalTime;
 
-public class Meeting {
-    static final LocalTime EARLIEST_TIME = LocalTime.of(8, 0);
-    private String description;
-    private LocalTime startTime;
-    private LocalTime endTime;
+non-sealed public class Meeting extends Event{
+
     private String priority;
     public Meeting(String newDescription, LocalTime newStartTime, LocalTime newEndTime, String newPriority) {
-        description = newDescription;
-        startTime = newStartTime;
-        endTime = newEndTime;
+        super(newDescription, newStartTime, newEndTime);
         priority = newPriority;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-    public LocalTime getEndTime() {
-        return endTime;
     }
     public String getPriority() {
         return priority;
     }
+    @Override
+    public String toString() {
+        return "Meeting: \n Description: " + super.getDescription() + "\n Start time: " + super.getStartTime() + "\n End time: " + super.getEndTime() + "\n Priority: " + getPriority() + "\n";
+    }
+
 }
